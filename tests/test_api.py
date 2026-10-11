@@ -32,23 +32,6 @@ def test_healthz():
     }
 
 
-"""
-
-Here we are testing the response object of Endpoint, one note is that: the reason why do we json() over response first. Is because the response carries
-several other bits of data like the status code which we checked first if it equates to 200 (what we expect for a succesfull request). So by doing
-json() we just get the message body.
-
-Based of the data structure we used, we expect a LIST of a dicts (where each dict is a signal record) so this is what we expect.
-
-Hence we first do isinstance to check if the our structure is of a list nature.
-
-Then we check if our result actually gave us any signals, so we check if there is at least one dict (in this case signal) in our list.
-
-Then we do a schema check on the first item in the list, using index lookup (0 in this case) is generally fine since we have already tested and stated we at least expect one signal anyways. And ofc we do keys() over it to grab the field names.
-
-"""
-
-
 def test_get_signals_returns_list_of_signals():
     response = client.get("/signals")
 

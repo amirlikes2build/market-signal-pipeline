@@ -4,6 +4,7 @@ from decimal import Decimal
 
 
 def generate_next_price(prev_price: Decimal) -> Decimal:
+
     std = max(prev_price / 100, Decimal("0.01"))
     flux = Decimal(str(random.gauss(0, float(std))))
     prev_price_flux = prev_price + flux
