@@ -9,6 +9,7 @@ app = FastAPI()
 def get_status():
     return {"message": "mini-ci-cd is running"}
 
+
 @app.get("/healthz")
 def get_health():
     return {
