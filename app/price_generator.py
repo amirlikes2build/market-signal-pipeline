@@ -1,5 +1,5 @@
 import random
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from decimal import Decimal
 
 
@@ -31,5 +31,5 @@ def market_data_producer(ticker: str, prev_price: Decimal) -> dict[str, str | De
         "ticker": ticker,
         "prev_price": prev_price,
         "cur_price": cur_price,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
     }
