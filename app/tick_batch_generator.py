@@ -8,7 +8,6 @@ def generate_market_ticks(
 ) -> list[dict[str, str | Decimal]]:
 
     output = []
-
     tracked_prices = starting_prices.copy()
 
     for _ in range(number_of_ticks):
@@ -20,6 +19,6 @@ def generate_market_ticks(
 
             output.append(new_data)
 
-            tracked_prices[ticker] = new_data["cur_price"]
+            tracked_prices[ticker] = Decimal(new_data["cur_price"])
 
     return output
