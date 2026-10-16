@@ -7,14 +7,14 @@ app = FastAPI()
 
 @app.get("/")
 def get_status():
-    return {"message": "mini-ci-cd is running"}
+    return {"message": "market-signal-pipeline is running"}
 
 
 @app.get("/healthz")
 def get_health():
     return {
         "status": "ok",
-        "service": "mini-ci-cd",
+        "service": "market-signal-pipeline",
     }
 
 

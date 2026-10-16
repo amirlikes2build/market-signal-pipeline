@@ -19,6 +19,6 @@ def generate_market_ticks(
 
             output.append(new_data)
 
-            tracked_prices[ticker] = Decimal(new_data["cur_price"])
+            tracked_prices[ticker] = new_data["cur_price"]
 
     return output

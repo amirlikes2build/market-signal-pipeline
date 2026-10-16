@@ -9,7 +9,7 @@ def run_market_tick_pipeline(
     starting_prices: dict[str, Decimal],
     number_of_ticks: int,
     output_path: str | Path,
-):
+) -> dict[str, str | int | list[str]]:
     generated_ticks = generate_market_ticks(
         starting_prices=starting_prices, number_of_ticks=number_of_ticks
     )
