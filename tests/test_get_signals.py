@@ -5,8 +5,8 @@ from app.raw_prices import RAW_PRICES
 
 EXPECTED_SIGNAL_FIELDS = {
     "ticker",
-    "previous_price",
-    "current_price",
+    "prev_price",
+    "cur_price",
     "price_change",
     "price_change_pct",
     "signal",
@@ -32,8 +32,8 @@ def test_get_all_signals_contains_calculated_aapl_signal():
 
     aapl_signal = next(signal for signal in result if signal["ticker"] == "AAPL")
 
-    assert aapl_signal["previous_price"] == Decimal("365.50")
-    assert aapl_signal["current_price"] == Decimal("379.49")
+    assert aapl_signal["prev_price"] == Decimal("365.50")
+    assert aapl_signal["cur_price"] == Decimal("379.49")
     assert aapl_signal["price_change"] == Decimal("13.99")
     assert aapl_signal["price_change_pct"] == Decimal("3.828")
     assert aapl_signal["signal"] == "momentum_up"

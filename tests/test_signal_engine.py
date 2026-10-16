@@ -14,8 +14,8 @@ def test_full_output_momentum_up():
 
     assert result == {
         "ticker": "NFLX",
-        "previous_price": Decimal("70.00"),
-        "current_price": Decimal("100.00"),
+        "prev_price": Decimal("70.00"),
+        "cur_price": Decimal("100.00"),
         "price_change": Decimal("30.00"),
         "price_change_pct": Decimal("42.857"),
         "signal": "momentum_up",

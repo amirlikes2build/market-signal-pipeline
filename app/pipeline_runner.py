@@ -28,3 +28,11 @@ def run_market_tick_pipeline(
         "first_timestamp": loaded_ticks[0]["timestamp"],
         "last_timestamp": loaded_ticks[-1]["timestamp"],
     }
+
+
+TEST_TICKS_INPUT = {
+    "AMD": Decimal("608.10"),
+    "NVDA": Decimal("229.28"),
+}
+
+run_market_tick_pipeline(TEST_TICKS_INPUT, 10, "data/example1.jsonl")

@@ -6,8 +6,8 @@ client = TestClient(app)
 
 EXPECTED_SIGNAL_FIELDS = {
     "ticker",
-    "previous_price",
-    "current_price",
+    "prev_price",
+    "cur_price",
     "price_change",
     "price_change_pct",
     "signal",

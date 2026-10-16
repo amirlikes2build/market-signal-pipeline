@@ -22,8 +22,8 @@ def calculate_price_signal(
 
     return {
         "ticker": ticker,
-        "previous_price": prev_price,
-        "current_price": cur_price,
+        "prev_price": prev_price,
+        "cur_price": cur_price,
         "price_change": price_change.quantize(
             Decimal("0.01"),
             rounding=ROUND_HALF_UP,
