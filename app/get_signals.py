@@ -3,7 +3,6 @@ from decimal import Decimal
 from app.tick_batch_generator import generate_market_ticks
 from app.tick_signal_processor import process_ticks_to_signals
 
-
 DEMO_STARTING_PRICES = {
     "AAPL": Decimal("365.50"),
     "MSFT": Decimal("275.50"),

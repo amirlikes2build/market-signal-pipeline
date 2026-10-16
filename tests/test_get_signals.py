@@ -1,6 +1,5 @@
 from app.get_signals import get_all_signals, get_signal_by_ticker
 
-
 EXPECTED_SIGNAL_FIELDS = {
     "ticker",
     "prev_price",
