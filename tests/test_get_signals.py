@@ -1,7 +1,5 @@
-from decimal import Decimal
-
 from app.get_signals import get_all_signals, get_signal_by_ticker
-from app.raw_prices import RAW_PRICES
+
 
 EXPECTED_SIGNAL_FIELDS = {
     "ticker",
@@ -14,48 +12,43 @@ EXPECTED_SIGNAL_FIELDS = {
 }
 
 
-def test_get_all_signals_length_against_raw_prices():
-    result = get_all_signals()
+def test_get_all_signals_returns_expected_count():
+    signals = get_all_signals()
 
-    assert len(result) == len(RAW_PRICES)
+    assert len(signals) == 3
 
 
 def test_get_all_signals_returns_expected_fields():
-    result = get_all_signals()
+    signals = get_all_signals()
 
-    for signal in result:
+    for signal in signals:
         assert EXPECTED_SIGNAL_FIELDS.issubset(signal.keys())
 
 
-def test_get_all_signals_contains_calculated_aapl_signal():
-    result = get_all_signals()
+def test_get_all_signals_returns_expected_tickers():
+    signals = get_all_signals()
 
-    aapl_signal = next(signal for signal in result if signal["ticker"] == "AAPL")
+    tickers = {signal["ticker"] for signal in signals}
 
-    assert aapl_signal["prev_price"] == Decimal("365.50")
-    assert aapl_signal["cur_price"] == Decimal("379.49")
-    assert aapl_signal["price_change"] == Decimal("13.99")
-    assert aapl_signal["price_change_pct"] == Decimal("3.828")
-    assert aapl_signal["signal"] == "momentum_up"
-    assert aapl_signal["timestamp"] == "2026-10-02T12:00:00Z"
+    assert tickers == {"AAPL", "MSFT", "NVDA"}
 
 
 def test_get_signal_by_ticker_returns_signal():
-    result = get_signal_by_ticker("AAPL")
+    signal = get_signal_by_ticker("AAPL")
 
-    assert result is not None
-    assert result["ticker"] == "AAPL"
-    assert EXPECTED_SIGNAL_FIELDS.issubset(result.keys())
+    assert signal is not None
+    assert signal["ticker"] == "AAPL"
+    assert EXPECTED_SIGNAL_FIELDS.issubset(signal.keys())
 
 
 def test_get_signal_by_ticker_handles_lowercase():
-    result = get_signal_by_ticker("aapl")
+    signal = get_signal_by_ticker("aapl")
 
-    assert result is not None
-    assert result["ticker"] == "AAPL"
+    assert signal is not None
+    assert signal["ticker"] == "AAPL"
 
 
 def test_get_signal_by_ticker_unknown_returns_none():
-    result = get_signal_by_ticker("UNKNOWN")
+    signal = get_signal_by_ticker("UNKNOWN")
 
-    assert result is None
+    assert signal is None

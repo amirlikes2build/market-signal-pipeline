@@ -1,27 +1,36 @@
-from app.raw_prices import RAW_PRICES
-from app.signal_engine import calculate_price_signal
+from decimal import Decimal
+
+from app.tick_batch_generator import generate_market_ticks
+from app.tick_signal_processor import process_ticks_to_signals
 
 
-def build_signal_from_raw_price(raw_price: dict) -> dict:
-    signal = calculate_price_signal(
-        ticker=raw_price["ticker"],
-        prev_price=raw_price["prev_price"],
-        cur_price=raw_price["cur_price"],
-    )
-
-    signal["timestamp"] = raw_price["timestamp"]
-
-    return signal
+DEMO_STARTING_PRICES = {
+    "AAPL": Decimal("365.50"),
+    "MSFT": Decimal("275.50"),
+    "NVDA": Decimal("135.50"),
+}
 
 
 def get_all_signals() -> list[dict]:
-    return [build_signal_from_raw_price(raw_price) for raw_price in RAW_PRICES.values()]
+    ticks = generate_market_ticks(
+        starting_prices=DEMO_STARTING_PRICES,
+        number_of_ticks=1,
+    )
+
+    return process_ticks_to_signals(ticks)
 
 
 def get_signal_by_ticker(ticker: str) -> dict | None:
-    raw_price = RAW_PRICES.get(ticker.upper())
+    ticker = ticker.upper()
 
-    if raw_price is None:
+    if ticker not in DEMO_STARTING_PRICES:
         return None
 
-    return build_signal_from_raw_price(raw_price)
+    ticks = generate_market_ticks(
+        starting_prices={ticker: DEMO_STARTING_PRICES[ticker]},
+        number_of_ticks=1,
+    )
+
+    signals = process_ticks_to_signals(ticks)
+
+    return signals[0]
