@@ -19,7 +19,7 @@ def test_get_status():
     response = client.get("/")
 
     assert response.status_code == 200
-    assert response.json() == {"message": "mini-ci-cd is running"}
+    assert response.json() == {"message": "market-signal-pipeline is running"}
 
 
 def test_healthz():
@@ -28,7 +28,7 @@ def test_healthz():
     assert response.status_code == 200
     assert response.json() == {
         "status": "ok",
-        "service": "mini-ci-cd",
+        "service": "market-signal-pipeline",
     }
 
 
