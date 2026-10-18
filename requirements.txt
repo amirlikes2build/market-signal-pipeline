@@ -3,3 +3,5 @@ ruff
 fastapi
 uvicorn
 httpx
+tiingo
+python-dotenv
