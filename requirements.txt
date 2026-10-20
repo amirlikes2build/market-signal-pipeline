@@ -5,3 +5,6 @@ uvicorn
 httpx
 tiingo
 python-dotenv
+pyarrow
+pandas
+numpy

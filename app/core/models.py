@@ -11,3 +11,5 @@ class MarketOHLCVModel:
     low: Decimal
     close: Decimal
     volume: Decimal
+
+
