@@ -10,6 +10,6 @@ class MarketOHLCVModel:
     high: Decimal
     low: Decimal
     close: Decimal
-    volume: Decimal
+    volume: int
 
 

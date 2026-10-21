@@ -46,7 +46,7 @@ class TiingoMarketClient(APIClient):
                 high=Decimal(row["high"]),
                 low=Decimal(row["low"]),
                 close=Decimal(row["close"]),
-                volume=Decimal(row["volume"])
+                volume=int(row["volume"])
             )
         )
 

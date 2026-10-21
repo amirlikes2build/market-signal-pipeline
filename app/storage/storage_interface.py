@@ -5,5 +5,9 @@ from app.core.models import MarketOHLCVModel
 
 class StorageInterface(ABC):
     @abstractmethod
-    def store_ohlcv_data(self, data: list[MarketOHLCVModel], ticker: str) -> None:
+    def write_ohlcv_data(self, 
+        data: list[MarketOHLCVModel],
+        ticker: str,
+        frequency: str
+    ) -> None:
         """ Store OHCLV data """
