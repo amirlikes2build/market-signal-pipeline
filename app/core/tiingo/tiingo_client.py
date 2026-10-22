@@ -14,17 +14,14 @@ class TiingoMarketClient(APIClient):
     def __init__(self):
         self.env_cfg = dotenv_values(Path(__file__).parent / ".env")
 
-        self.conn = Client({
-            "api_key": self.env_cfg["API_KEY"],
-            "session": True
-        })
+        self.conn = Client({"api_key": self.env_cfg["API_KEY"], "session": True})
 
     def get_historical_ohlcv_data(
         self,
         ticker: str,
         start_date: str | date | datetime,
         end_date: str | date | datetime,
-        frequency: str
+        frequency: str,
     ) -> list[MarketOHLCVModel]:
 
         ohlcv_data = self.conn.get_ticker_price(
@@ -32,7 +29,7 @@ class TiingoMarketClient(APIClient):
             startDate=start_date,
             endDate=end_date,
             frequency=frequency,
-            columns="open,high,low,close,volume"
+            columns="open,high,low,close,volume",
         )
 
         rows = []
@@ -41,13 +38,13 @@ class TiingoMarketClient(APIClient):
             row: Any
             rows.append(
                 MarketOHLCVModel(
-                timestamp=datetime.fromisoformat(row["date"]),
-                open=Decimal(row["open"]),
-                high=Decimal(row["high"]),
-                low=Decimal(row["low"]),
-                close=Decimal(row["close"]),
-                volume=int(row["volume"])
+                    timestamp=datetime.fromisoformat(row["date"]),
+                    open=Decimal(row["open"]),
+                    high=Decimal(row["high"]),
+                    low=Decimal(row["low"]),
+                    close=Decimal(row["close"]),
+                    volume=int(row["volume"]),
+                )
             )
-        )
 
         return rows

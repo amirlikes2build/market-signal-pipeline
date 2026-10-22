@@ -11,7 +11,6 @@ class APIClient(ABC):
         ticker: str,
         start_date: datetime | date | str,
         end_date: datetime | date | str,
-        frequency: str
+        frequency: str,
     ) -> list[MarketOHLCVModel]:
-
-        """ Retrieve historical OHCLV data for a ticker """
+        """Retrieve historical OHCLV data for a ticker"""
